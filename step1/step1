@@ -1,0 +1,25 @@
+step LHE, GEN-SIM
+
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/PdmVCampaignRunIIFall18wmLHEGS
+https://cms-pdmv.cern.ch/mcm/campaigns?prepid=RunIIFall18wmLHEGS&page=0&shown=63
+
+wmLHE+GEN-SIM requests for Fall-2018 MC production
+Update 10_2_23 on 23/07/20
+
+cmsDriver.py \
+Configuration/GenProduction/python/WprimeToMuNu_M-400_NNPDF31nnlo_TuneCP5_13TeV_madgraph_cff.py \
+--mc --eventcontent RAWSIM,LHE \
+--datatier GEN-SIM,LHE \
+--conditions 102X_upgrade2018_realistic_v9 \
+--beamspot Realistic25ns13TeVEarly2018Collision \
+--step LHE,GEN,SIM \
+--geometry DB:Extended \
+--era Run2_2018 \
+--fileout file:WprimeToMuNu_M-400_step1.root \
+--python_filename WprimeToMuNu_M-400_step1_cfg.py \
+-n 50 \
+--no_exec
+cmsRun WprimeToMuNu_M-400_step1_cfg.py
+
+--> next step RunIIAutumn18DRPremix
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/PdmVCampaignRunIIAutumn18DRPremix

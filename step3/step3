@@ -1,0 +1,49 @@
+step RAW2DIGI,L1Reco,RECO,RECOSIM,EI  (AODSIM)
+
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/PdmVCampaignRunIIAutumn18DRPremix
+https://cms-pdmv.cern.ch/mcm/campaigns?prepid=RunIIAutumn18DRPremix&page=0&shown=63
+
+Starting RunIIAutumn18DRPremix for DPG, POG 2018 samples.
+DIGI-RECO Premix  Campaign for Autumn-2018  MC production
+
+
+Campaign: RunIIAutumn18DRPremix
+
+Release >= CMSSW_10_2_5
+step: DIGI,DATAMIX,L1,DIGI2RAW,HLT:@relval2018
+datatier: GEN-SIM-RAW
+eventcontent: PREMIXRAW
+conditions: 102X_upgrade2018_realistic_v15
+geometry: DB:Extended
+era: Run2_2018
+nThreads: 8
+Request's memory: 14.7 GB
+
+(step2)
+cmsDriver.py step1 --mc \
+--eventcontent PREMIXRAW \
+--datatier GEN-SIM-RAW \
+--conditions 102X_upgrade2018_realistic_v15 \
+--step DIGI,DATAMIX,L1,DIGI2RAW,HLT:@relval2018 \
+--procModifiers premix_stage2 \
+--nThreads 8 \
+--geometry DB:Extended \
+--datamix PreMix \
+--era Run2_2018  \
+--filein file:step-1.root \
+--fileout file:step0.root \
+--pileup_input "dbs: /Neutrino_E-10_gun/RunIISummer17PrePremix-PUAutumn18_102X_upgrade2018_realistic_v15-v1/GEN-SIM-DIGI-RAW"
+
+
+(step3)
+cmsDriver.py step2 --mc \
+--eventcontent AODSIM \
+--runUnscheduled \
+--datatier AODSIM \
+--conditions 102X_upgrade2018_realistic_v15 \
+--step RAW2DIGI,L1Reco,RECO,RECOSIM,EI \
+--procModifiers premix_stage2 \
+--nThreads 8 \
+--era Run2_2018  \
+--fileout file:step1.root
+

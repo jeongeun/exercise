@@ -1,0 +1,21 @@
+executable = runStep1.sh
+universe = vanilla
+output   = condorLog/condorLog_$(Cluster)_$(Process).out
+error    = condorLog/condorLog_$(Cluster)_$(Process).err
+#log      = condorLog/condorLog_$(Cluster)_$(Process).log
+log      = /dev/null
+use_x509userproxy = True
+#request_cpus = 4
+#request_memory = 4 GB
+#request_disk = 4 GB
+should_transfer_files = yes
+when_to_transfer_output = ON_EXIT
+transfer_output_files = condorOut
+transfer_output_remaps = "condorOut=condorOut_gen_$(Cluster)"
+requirements = (machine != "node06")
+#arguments = $wpmass  $FirstRun $nEvt $Cluster $Process $ProcessStart
+#arguments = 400 1 100 $(Cluster) $(Process) 0
+#arguments = 1800 1 100 $(Cluster) $(Process) 0
+#arguments = 3800 1 100 $(Cluster) $(Process) 0
+arguments = 5000 1 100 $(Cluster) $(Process) 0
+queue 200

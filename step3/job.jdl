@@ -1,0 +1,15 @@
+executable = runCondor_step3.sh 
+universe = vanilla  
+output   = condorLog/condor_$(Cluster).$(Process).log  
+error    = condorLog/condor_$(Cluster).$(Process).err
+log      = /dev/null
+use_x509userproxy = True
+request_disk = 4 GB
+should_transfer_files = yes
+when_to_transfer_output = ON_EXIT
+transfer_input_files = runStep3.sh
+transfer_output_files = condorOut
+requirements = (machine != "node06") || (machine == "node03") || (machine == "node04") || (machine == "node05")
+getenv = true
+arguments = $(Process) 
+queue 200

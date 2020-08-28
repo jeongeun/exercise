@@ -1,0 +1,16 @@
+executable = runCondor_step2.sh 
+universe = vanilla  
+output   = condorLog/condor_$(Cluster).$(Process).log  
+error    = condorLog/condor_$(Cluster).$(Process).err
+log      = /dev/null
+use_x509userproxy = True
+request_disk = 4 GB
+#request_memory = 14.7 GB
+should_transfer_files = yes
+when_to_transfer_output = ON_EXIT
+transfer_input_files = runStep2.sh, Neutrino_E-10_gun_D_RunIISummer17PrePremix-PUAutumn18_102X_upgrade2018_realistic_v15-v1_D_GEN-SIM-DIGI-RAW.txt
+transfer_output_files = condorOut
+requirements = (machine != "node06") || (machine == "node03") || (machine == "node04") || (machine == "node05")
+getenv = true
+arguments = $(Process) 
+queue 200
