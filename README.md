@@ -1,4 +1,6 @@
-# This recipe will produce GEN SIM level events from a MG5 gridpack using the same configuration as in the official CMSSW 2018 RunIIFall18MC production.
+# MCProd2018 
+
+This recipe will produce GEN SIM level events from a MG5 gridpack using the same configuration as in the official CMSSW 2018 RunIIFall18MC production.
 
 -- 2018 MC Campaign = (step1)-> (step2)-> (step3) ->(step4)  (https://twiki.cern.ch/twiki/bin/view/CMS/PdmVMcCampaigns)
 (1) RunIIFall18wmLHEGS, step=GEN-SIM, LHE
